@@ -1,0 +1,60 @@
+
+{% extends 'default.html' %}
+{% load custom_filters %}
+{% block title %}
+Post detail
+{% endblock title %}
+
+{% block content %}
+<h1>Подробная информация о публикации</h1>
+  <hr>
+<table>
+    <thead>
+        <th>
+            <b>Автор публикации &nbsp </b>
+        </th>
+        <th>
+            <b>Тип публикации &nbsp </b>
+        </th>
+        <th>
+            <b>Время публикации &nbsp </b>
+        </th>
+        <th>
+            <b>Категория публикации &nbsp </b>
+        </th>
+        <th>
+            <b>Заголовок публикации &nbsp </b>
+        </th>
+        <th>
+            <b>Содержание публикации &nbsp </b>
+        </th>
+        <th>
+            <b>Рейтинг публикации &nbsp </b>
+        </th>
+    </thead>
+    <tr>
+        <td>
+            {{ post.author }}
+        </td>
+        <td>
+            {{ post.get_view_display}}
+        </td>
+        <td>
+            {{ post.time_of_creation|date:'d M Y' }}
+        </td>
+        <td>
+            <a href="{% url 'category_subscription' post.post_category.id %}"> < {{ post.post_category }} > </a>
+        </td>
+        <td>
+            {{ post.title }}
+        </td>
+        <td>
+            {{ post.text|truncatechars:50|censor  }}
+        </td>
+        <td>
+            {{ post.post_rating }}
+        </td>
+    </tr>
+</table>
+<br>
+{% endblock content %}

@@ -1,0 +1,21 @@
+2023-06-06 16:51:26,652 :: ERROR -- E:\PaicharmProjct\Попытка\venv\Lib\site-packages\django\utils\log.py / (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news/post_list.html'), <traceback object at 0x000001A849474FC0>) :Internal Server Error: /posts/
+Traceback (most recent call last):
+  File "E:\PaicharmProjct\Попытка\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\PaicharmProjct\Попытка\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "E:\PaicharmProjct\Попытка\venv\Lib\site-packages\django\template\response.py", line 111, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\PaicharmProjct\Попытка\venv\Lib\site-packages\django\template\response.py", line 87, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\PaicharmProjct\Попытка\venv\Lib\site-packages\django\template\response.py", line 69, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\PaicharmProjct\Попытка\venv\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: news/post_list.html
+2023-06-06 16:51:26,654 :: ERROR -- E:\PaicharmProjct\Попытка\venv\Lib\site-packages\django\core\servers\basehttp.py / None :"GET /posts/?page=1 HTTP/1.1" 500 87832

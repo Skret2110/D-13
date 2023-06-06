@@ -1,0 +1,68 @@
+
+{% extends 'default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Search
+{% endblock title %}
+
+{% block content %}
+    <h1>Поиск публикаций</h1>
+    <h3><p align="center">Всего публикаций: {{ posts_search|length }}</p></h3>
+    <hr>
+    <h4>Фильтры поиска</h4>
+    <br>
+    <h5>Дата вводится в формате: 2021-11-03</h5>
+
+    <form method="GET">
+        {{ filter.form }}
+        <input type="submit" value="Найти"> <!--Кнопка для начала поиска-->
+<!--        <label for="party">Укажите предпочтительную дату события:</label>-->
+<!--        <input type="date" id="party" name="party" min="2021-01-01" max="2021-12-31">-->
+    </form>
+    <hr>
+    {% if posts_search %}
+       <table>
+           <thead>
+              <th>
+                  <b>Заголовок &nbsp </b>
+              </th>
+              <th>
+                  <b> &nbsp Дата публикации &nbsp </b>
+              </th>
+              <th>
+                  <b> &nbsp Автор публикации &nbsp </b>
+              </th>
+              <th>
+                  <b> &nbsp Категория &nbsp </b>
+              </th>
+              <th>
+                  <b> &nbsp Краткое содержание &nbsp</b>
+              </th>
+           </thead>
+      {% for post in filter.qs %}
+          <tr>
+              <td>
+                  {{ post.title|censor }}
+              </td>
+              <td>
+                  {{ post.time_of_creation|date:'d M Y'}}
+              </td>
+              <td>
+                  {{ post.author }}
+              </td>
+              <td>
+                  < {{ post.post_category }} >
+              </td>
+              <td>
+                  {{ post.text|truncatechars:50|censor }}
+              </td>
+          </tr>
+      {% endfor %}
+      </table>
+    <br>
+    {% else %}
+      <h2>Публикаций нет!</h2>
+    {% endif %}
+{% endblock content %}
